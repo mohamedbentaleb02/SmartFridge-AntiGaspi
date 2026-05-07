@@ -11,7 +11,7 @@ Une application backend complète pour la réduction du gaspillage alimentaire a
 - 🔔 **Alertes** : Notifications pour produits périmés et stock faible
 - 📊 **Statistiques** : Tableaux de bord sur le gaspillage alimentaire
 - 🔒 **Sécurité** : Authentification sécurisée, validation des données
-
+##test
 ## Technologies
 
 - **Node.js** - Runtime JavaScript
