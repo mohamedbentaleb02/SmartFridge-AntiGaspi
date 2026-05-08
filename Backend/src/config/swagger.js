@@ -28,13 +28,8 @@ const options = {
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
   },
-  apis: ['./src/routes/*.js'],
+  apis: ['./src/routes/*.js'], // ADD THIS LINE - required by swaggerJsdoc
 };
 
 const specs = swaggerJsdoc(options);
