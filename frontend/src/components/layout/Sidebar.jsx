@@ -87,10 +87,6 @@ const Sidebar = () => {
             <UserCircle size={20} />
             <span>Profile</span>
           </NavLink>
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-destructive hover:bg-destructive/10 transition-colors duration-200">
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
         </div>
       </div>
     </aside>

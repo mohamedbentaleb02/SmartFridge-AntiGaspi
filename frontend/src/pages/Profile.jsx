@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Settings, Bell, Shield, LogOut, TrendingUp, Leaf, DollarSign } from 'lucide-react';
 
-const Profile = () => {
+// 1. Accept the onLogout prop
+const Profile = ({ onLogout }) => {
+  // 2. State to hold the logged-in user's data
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Grab the user data we saved during login
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUserData(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Safe fallbacks while loading or if data is missing
+  const firstName = userData?.firstName || 'John';
+  const lastName = userData?.lastName || 'Doe';
+  const email = userData?.email || 'john.doe@example.com';
+  const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold tracking-tight m-0 mb-8">Your Profile</h1>
@@ -11,10 +29,10 @@ const Profile = () => {
           {/* Profile Card */}
           <div className="glass-card p-6 flex flex-col items-center text-center">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl text-primary-foreground font-bold mb-4">
-              JD
+              {initials}
             </div>
-            <h2 className="text-xl font-bold">John Doe</h2>
-            <p className="text-muted-foreground text-sm mb-4">john.doe@example.com</p>
+            <h2 className="text-xl font-bold">{firstName} {lastName}</h2>
+            <p className="text-muted-foreground text-sm mb-4">{email}</p>
             <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium border border-primary/20">
               Eco Warrior
             </span>
@@ -90,7 +108,11 @@ const Profile = () => {
             </div>
           </div>
           
-          <button className="w-full py-3 flex items-center justify-center gap-2 text-destructive font-medium bg-destructive/10 hover:bg-destructive/20 rounded-xl transition-colors">
+          {/* 3. Attach the onLogout prop to the onClick event */}
+          <button 
+            onClick={onLogout}
+            className="w-full py-3 flex items-center justify-center gap-2 text-destructive font-medium bg-destructive/10 hover:bg-destructive/20 rounded-xl transition-colors"
+          >
             <LogOut size={18} />
             Sign Out
           </button>
